@@ -16,6 +16,6 @@ Si el usuario que inicia en la app es admin, tendrá la psibiliada de añadir o 
 - Crear/Borrar/Eliminar habiliadaes y planes de entrenamiento
 - Informacion sobre los usuarios dados de alta
 ## Mocap
-<img src="https://github.com/diegomartinezalaminos/SkillYouNeed/blob/main/mocap.png" alt="Error al cargar la imagen" width="200" height="200">
+<img src="https://github.com/diegomartinezalaminos/SkillYouNeed/blob/main/mocap.PNG" alt="Error al cargar la imagen" width="200" height="200">
 <hr>
 <img src="https://github.com/diegomartinezalaminos/SkillYouNeed/blob/main/logo.png" alt="Error al cargar la imagen" width="200" height="200">
