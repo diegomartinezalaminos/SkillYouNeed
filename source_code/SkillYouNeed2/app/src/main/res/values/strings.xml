@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SkillYouNeed</string>
+
+    <string name="ErrorEmptyField">required field</string>
+    <string name="LoginEmailText">Email:</string>
+    <string name="LoginPasswordText">Password:</string>
+    <string name="RegisterButtonText">Register</string>
+    <string name="LoginButtonText">Login</string>
+    <string name="RegisterUserNameText">User name:</string>
+    <string name="RegisterEmailText">Email:</string>
+    <string name="RegisterPaswordText">Password:</string>
+    <string name="RegisterRepeatPassword">Repeat password:</string>
+    <string name="NotEqualsPassword">The password is not the same:</string>
+    <string name="LoginForguetPasswordButton">I not don remember the password</string>
+    <string name="LoginErrorWithEmailOrPassword">EL gamil o contraseña son incorrectos</string>
+</resources>
