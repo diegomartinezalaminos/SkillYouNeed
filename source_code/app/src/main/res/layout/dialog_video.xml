@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#090909"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <VideoView
+        android:id="@+id/videoViewVideoDialogVideo"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+    <TextView
+        android:id="@+id/textViewDescripcionDialogVideo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:text="TextView"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
