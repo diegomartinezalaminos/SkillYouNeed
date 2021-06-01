@@ -6,16 +6,19 @@ import java.util.ArrayList;
 // Modelo de user de la bbdd
 public class User implements Serializable {
 
+    private Boolean userAdmin;
     private String userUid, userEmail, userName;
     private ArrayList<String> userSkill;
 
     public User() {
+        userAdmin = false;
     }
 
     public User(String userUid, String userEmail, String userName) {
         this.userUid = userUid;
         this.userEmail = userEmail;
         this.userName = userName;
+        this.userAdmin = false;
     }
 
     public User(String userUid, String userEmail, String userName, ArrayList<String> userSkill) {
@@ -23,6 +26,15 @@ public class User implements Serializable {
         this.userEmail = userEmail;
         this.userName = userName;
         this.userSkill = userSkill;
+        this.userAdmin = false;
+    }
+
+    public Boolean getUserAdmin() {
+        return userAdmin;
+    }
+
+    public void setUserAdmin(Boolean userAdmin) {
+        this.userAdmin = userAdmin;
     }
 
     public String getUserUid() {

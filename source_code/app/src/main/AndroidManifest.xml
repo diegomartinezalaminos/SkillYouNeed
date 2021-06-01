@@ -11,12 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SkillYouNeed">
-        <activity android:name=".UserProfileActivity"></activity>
-        <activity android:name=".SkillListActivity" />
-        <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".ManageGadgetsActivity"></activity>
+        <activity android:name=".ManageTypesActivity" />
+        <activity android:name=".ManageSkillsActivity" />
+        <activity android:name=".ManageRoutinesActivity" />
+        <activity android:name=".ManageExercisesActivity" />
+        <activity android:name=".ManageUsersActivity" />
+        <activity android:name=".activities.UserProfileActivity" />
+        <activity android:name=".activities.SkillListActivity" />
+        <activity android:name=".activities.ChangePasswordActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

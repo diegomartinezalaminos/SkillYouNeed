@@ -1,4 +1,4 @@
-package com.example.skillyouneed;
+package com.example.skillyouneed.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.skillyouneed.R;
 import com.example.skillyouneed.models.Type;
 import com.example.skillyouneed.reycles.MainActivityOnClickListener;
 import com.example.skillyouneed.reycles.MainAdapterRecycler;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityOnCli
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -80,34 +82,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityOnCli
         myAdapter = new MainAdapterRecycler(myOptionsList, this);
         myAdapter.notifyDataSetChanged();
         myRecyclerView.setAdapter(myAdapter);
-    }
-
-    private void loginOut(){
-        FirebaseAuth.getInstance().signOut();
-        Intent i = new Intent(MainActivity.this, LoginActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflador = getMenuInflater() ;
-        inflador.inflate(R.menu.mainmenu, menu) ;
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.MainmenuLoginOunt:
-                loginOut();
-                break ;
-            default :
-                return super.onOptionsItemSelected(item);
-        }
-
-        return true ;
     }
 
     @Override

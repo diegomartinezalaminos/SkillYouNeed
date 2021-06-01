@@ -1,9 +1,10 @@
-package com.example.skillyouneed;
+package com.example.skillyouneed.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 
+import com.example.skillyouneed.R;
 import com.example.skillyouneed.models.Skill;
 import com.example.skillyouneed.models.Type;
 import com.example.skillyouneed.reycles.SkillListAdapterRecycler;
@@ -21,7 +23,6 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -139,6 +140,7 @@ public class SkillListActivity extends AppCompatActivity implements SkillListOnC
             public void onClick(View v) {
                 Intent intent = new Intent(SkillListActivity.this, UserProfileActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
