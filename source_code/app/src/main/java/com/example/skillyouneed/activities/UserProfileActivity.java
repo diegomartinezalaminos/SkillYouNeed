@@ -3,38 +3,35 @@ package com.example.skillyouneed.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
-import com.example.skillyouneed.ManageExercisesActivity;
-import com.example.skillyouneed.ManageGadgetsActivity;
-import com.example.skillyouneed.ManageRoutinesActivity;
-import com.example.skillyouneed.ManageSkillsActivity;
-import com.example.skillyouneed.ManageTypesActivity;
-import com.example.skillyouneed.ManageUsersActivity;
+import com.example.skillyouneed.ManageDeleteEditExerciseActivity;
+import com.example.skillyouneed.ManageDeleteEditGadgetActivity;
+import com.example.skillyouneed.ManageDeleteEditRoutineActivity;
+import com.example.skillyouneed.ManageDeleteEditSkillActivity;
+import com.example.skillyouneed.ManageDeleteEditTypeActivity;
+import com.example.skillyouneed.ManageAddExerciseActivity;
+import com.example.skillyouneed.ManageAddGadgetActivity;
+import com.example.skillyouneed.ManageAddRoutineActivity;
+import com.example.skillyouneed.ManageAddSkillActivity;
+import com.example.skillyouneed.ManageAddTypeActivity;
 import com.example.skillyouneed.R;
-import com.example.skillyouneed.models.Routine;
 import com.example.skillyouneed.models.User;
+import com.example.skillyouneed.utilities.SentencesFirestore;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -50,6 +47,7 @@ import java.util.ArrayList;
 public class UserProfileActivity extends AppCompatActivity {
 
     //Variables
+    private SentencesFirestore sentence;
     private User user; //(getUserObb)
     private MaterialAlertDialogBuilder madb;
     private FirebaseFirestore myDB;
@@ -59,8 +57,9 @@ public class UserProfileActivity extends AppCompatActivity {
     private DocumentReference referenceUserProfile;
     private ArrayList<DocumentReference> userSkills;
     private ScrollView scrollViewAdminSectionUserProfile;
-    private Button buttonDeleteOwnUserUserProfile, buttonLoginOutUserProfile,
-            buttonDeleteUserUserProfile, buttonAddExerciseUserProfile,
+    private Button buttonDeleteOwnUserUserProfile, buttonLoginOutUserProfile, buttonAddExerciseUserProfile,
+            buttonDeleteEditGadgetUserProfile, buttonDeleteEditExerciseUserProfile, buttonDeleteEditRoutineUserProfile,
+            buttonDeleteEditSkillUserProfile, buttonEditDeleteTypeUserProfile,
             buttonAddRoutineUserProfile, buttonAddTypeUserProfile, buttonAddGadgetUserProfile, buttonAddSkillUserProfile;
     private TextInputEditText textInputOwnUserNameUserProfile, textInputOwnGmailUserProfile;
     private ImageButton buttonSaveChangeUserProfile;
@@ -89,7 +88,6 @@ public class UserProfileActivity extends AppCompatActivity {
         buttonDeleteOwnUserUserProfile = (Button) findViewById(R.id.buttonDeleteOwnUserUserProfile);
         buttonLoginOutUserProfile = (Button) findViewById(R.id.buttonLoginOutUserProfile);
         buttonSaveChangeUserProfile = (ImageButton) findViewById(R.id.buttonSaveChangeUserProfile);
-        buttonDeleteUserUserProfile = (Button) findViewById(R.id.buttonDeleteUserUserProfile);
         buttonAddExerciseUserProfile = (Button) findViewById(R.id.buttonAddExerciseUserProfile);
         buttonAddRoutineUserProfile = (Button) findViewById(R.id.buttonAddRoutineUserProfile);
         buttonAddTypeUserProfile = (Button) findViewById(R.id.buttonAddTypeUserProfile);
@@ -97,10 +95,15 @@ public class UserProfileActivity extends AppCompatActivity {
         buttonAddSkillUserProfile = (Button) findViewById(R.id.buttonAddSkillUserProfile);
         textInputOwnUserNameUserProfile = (TextInputEditText) findViewById(R.id.textInputOwnUserNameUserProfile);
         textInputOwnGmailUserProfile = (TextInputEditText) findViewById(R.id.textInputOwnGmailUserProfile);
+        buttonEditDeleteTypeUserProfile = (Button) findViewById(R.id.buttonEditDeleteTypeUserProfile);
+        buttonDeleteEditGadgetUserProfile = (Button) findViewById(R.id.buttonDeleteEditGadgetUserProfile);
+        buttonDeleteEditExerciseUserProfile = (Button) findViewById(R.id.buttonDeleteEditExerciseUserProfile);
+        buttonDeleteEditRoutineUserProfile = (Button) findViewById(R.id.buttonDeleteEditRoutineUserProfile);
+        buttonDeleteEditSkillUserProfile = (Button) findViewById(R.id.buttonDeleteEditSkillUserProfile);
 
         textInputOwnGmailUserProfile.setText(currentUser.getEmail());
-        //getUserObb(currentUser.getUid());
-        //textInputOwnGmailUserProfile.setText(user.getUserName());
+        DocumentReference reference = myDB.collection("user").document(currentUser.getUid());
+        //textInputOwnUserNameUserProfile.setText(reference.get().getResult().toObject(User.class).getUserName());
     }
 
     private void event() {
@@ -139,57 +142,83 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        buttonDeleteUserUserProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(UserProfileActivity.this, ManageUsersActivity.class);
-                startActivity(i);
-                //finish();
-            }
-        });
-
         buttonAddExerciseUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserProfileActivity.this, ManageExercisesActivity.class);
+                Intent i = new Intent(UserProfileActivity.this, ManageAddExerciseActivity.class);
                 startActivity(i);
-                //finish();
+            }
+        });
+
+        buttonDeleteEditExerciseUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(UserProfileActivity.this, ManageDeleteEditExerciseActivity.class);
+                startActivity(i);
             }
         });
 
         buttonAddRoutineUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserProfileActivity.this, ManageRoutinesActivity.class);
+                Intent i = new Intent(UserProfileActivity.this, ManageAddRoutineActivity.class);
                 startActivity(i);
-                //finish();
+            }
+        });
+
+        buttonDeleteEditRoutineUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(UserProfileActivity.this, ManageDeleteEditRoutineActivity.class);
+                startActivity(i);
             }
         });
 
         buttonAddTypeUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserProfileActivity.this, ManageTypesActivity.class);
+                Intent i = new Intent(UserProfileActivity.this, ManageAddTypeActivity.class);
                 startActivity(i);
-                //finish();
+            }
+        });
+
+        buttonEditDeleteTypeUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(UserProfileActivity.this, ManageDeleteEditTypeActivity.class);
+                startActivity(i);
             }
         });
 
         buttonAddGadgetUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserProfileActivity.this, ManageGadgetsActivity.class);
+                Intent i = new Intent(UserProfileActivity.this, ManageAddGadgetActivity.class);
                 startActivity(i);
-                //finish();
+            }
+        });
+
+        buttonDeleteEditGadgetUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(UserProfileActivity.this, ManageDeleteEditGadgetActivity.class);
+                startActivity(i);
             }
         });
 
         buttonAddSkillUserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(UserProfileActivity.this, ManageSkillsActivity.class);
+                Intent i = new Intent(UserProfileActivity.this, ManageAddSkillActivity.class);
                 startActivity(i);
-                //finish();
+            }
+        });
+
+        buttonDeleteEditSkillUserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(UserProfileActivity.this, ManageDeleteEditSkillActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -201,6 +230,12 @@ public class UserProfileActivity extends AppCompatActivity {
             .setPositiveButton("CONTINUAR", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+/*                    DocumentReference reference = myDB.collection("user").document(currentUser.getUid());
+                    sentence.deleteUser(myAuth.getCurrentUser(), reference);
+                    Intent i = new Intent(UserProfileActivity.this, LoginActivity.class);
+                    startActivity(i);
+                    finish();*/
+
                     currentUser.delete()
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

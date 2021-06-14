@@ -8,15 +8,6 @@
     tools:context=".activities.UserProfileActivity">
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fondo" />
-
-    <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,6 +38,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Loging Out"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,6 +53,11 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:text="Delete User"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
                 app:layout_constraintBottom_toBottomOf="@+id/buttonLoginOutUserProfile"
                 app:layout_constraintEnd_toStartOf="@+id/buttonLoginOutUserProfile"
                 app:layout_constraintTop_toTopOf="@+id/buttonLoginOutUserProfile" />
@@ -66,24 +67,44 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
+                android:tint="#000000"
+                app:layout_constraintCircleRadius="@dimen/cardview_default_radius"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
                 app:srcCompat="@android:drawable/ic_menu_save" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/textInputLayout12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
+
+                android:hint="Name:"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:textColorHint="@color/white"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidthFocused="3dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:counterTextColor="@color/white"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:placeholderTextColor="@color/white"
+                app:prefixTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_logo"
+                app:startIconTint="@color/white"
+                app:suffixTextColor="@color/white"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageButtonIconUserProfile">
@@ -92,11 +113,11 @@
                     android:id="@+id/textInputOwnUserNameUserProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nombre:"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imageButtonIconUserProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -116,21 +137,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
+                android:hint="Email:"
+
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:textColorHint="@color/white"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidthFocused="3dp"
+                app:counterMaxLength="30"
+                app:counterEnabled="true"
+                app:counterTextColor="@color/white"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:placeholderTextColor="@color/white"
+                app:prefixTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_logo"
+                app:startIconTint="@color/white"
+                app:suffixTextColor="@color/white"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout12">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputOwnGmailUserProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email:"
+                    android:textColor="@color/white"
                     android:inputType="textWebEmailAddress" />
+
             </com.google.android.material.textfield.TextInputLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -155,44 +198,131 @@
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
                 android:gravity="center"
-                android:text="ADMIN SECTION:" />
-
-            <Button
-                android:id="@+id/buttonDeleteUserUserProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Borrar usuario" />
-
-            <Button
-                android:id="@+id/buttonAddExerciseUserProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="ADD exercise" />
-
-            <Button
-                android:id="@+id/buttonAddRoutineUserProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add routine" />
+                android:text="ADMIN SECTION:"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/buttonAddTypeUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="add type" />
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="add type"/>
+
+            <Button
+                android:id="@+id/buttonEditDeleteTypeUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="Edit / delete Type" />
 
             <Button
                 android:id="@+id/buttonAddGadgetUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
                 android:text="add gadget" />
+
+            <Button
+                android:id="@+id/buttonDeleteEditGadgetUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="Delete / Edit Gadget" />
 
             <Button
                 android:id="@+id/buttonAddSkillUserProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
                 android:text="add skill" />
+
+            <Button
+                android:id="@+id/buttonDeleteEditSkillUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="Delete / Edit Skill" />
+
+            <Button
+                android:id="@+id/buttonAddRoutineUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="Add routine" />
+
+            <Button
+                android:id="@+id/buttonDeleteEditRoutineUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="Delete / Edit Routine" />
+
+            <Button
+                android:id="@+id/buttonAddExerciseUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="ADD exercise" />
+
+            <Button
+                android:id="@+id/buttonDeleteEditExerciseUserProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:icon="@drawable/ic_logo"
+                app:strokeColor="@color/white"
+                app:cornerRadius="15dp"
+                app:iconGravity="start"
+                app:iconSize="30dp"
+                android:text="Delete / Edit  Exercise" />
+
         </LinearLayout>
     </ScrollView>
 

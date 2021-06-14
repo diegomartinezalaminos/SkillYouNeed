@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="365dp"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="5dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/blue_01"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@drawable/spinner_difficult_item_style">
+    <ImageView
+        android:id="@+id/imageViewIconSpinnerDifficultyItem"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/textViewNameSpinnerDifficultyItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dificultad"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"/>
+    </LinearLayout>
+</LinearLayout>

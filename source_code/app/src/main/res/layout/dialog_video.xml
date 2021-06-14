@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#090909"
     android:orientation="vertical"
     android:padding="8dp">
 
-    <VideoView
-        android:id="@+id/videoViewVideoDialogVideo"
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_viewVideoDialogVideo"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="wrap_content"
+
+        app:autoPlay="true"
+        app:showFullScreenButton="false"
+        app:videoId="" />
 
     <TextView
         android:id="@+id/textViewDescripcionDialogVideo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:text="TextView"
+        android:text="Este texto se ha escrito desde el layout"
         android:textColor="#FFFFFF" />
 </LinearLayout>

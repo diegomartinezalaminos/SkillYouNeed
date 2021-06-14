@@ -14,13 +14,6 @@ public class User implements Serializable {
         userAdmin = false;
     }
 
-    public User(String userUid, String userEmail, String userName) {
-        this.userUid = userUid;
-        this.userEmail = userEmail;
-        this.userName = userName;
-        this.userAdmin = false;
-    }
-
     public User(String userUid, String userEmail, String userName, ArrayList<String> userSkill) {
         this.userUid = userUid;
         this.userEmail = userEmail;

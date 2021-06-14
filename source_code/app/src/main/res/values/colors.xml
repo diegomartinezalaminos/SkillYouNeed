@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_500">#38718C</color> // FF6200EE
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="teal_700">#38718C</color> // #FF018786
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
@@ -16,6 +16,12 @@
     <color name="RegisterButtonRegister">#595757</color>
     <color name="RegisterTextRegisterButton">#FFFFFF</color>
 
+    //Color Palette
+    <color name="blue_01">#005194</color>
+    <color name="blue_02">#1B8C77</color>
+    <color name="blue_03">#0C4036</color>
+    <color name="blue_04">#29D9B9</color>
+
 
     //LogingActivity
     <color name="LoginButtonRegister">#595757</color>
@@ -24,4 +30,7 @@
     <color name="LoginTextRegisterButton">#fff</color>
     <color name="LoginButtonForguetPassword">#77979191</color>
     <color name="LoginTextForguetPassword">#716E6E</color>
+
+    //Seleccion de ejercicio
+    <color name="selectExercise">#CDDC39</color>
 </resources>

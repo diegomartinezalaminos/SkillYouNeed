@@ -22,13 +22,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_upwave" />
 
     <SearchView
-        android:id="@+id/searchViewSearchFinalSkillList"
+        android:id="@+id/searchViewSearchSkillList"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
@@ -41,20 +42,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonProfileFinalSkillList"
+        android:id="@+id/floatingActionButtonProfileSkillList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
-        android:clickable="true"
+        android:clickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_logo"
         tools:ignore="VectorDrawableCompat" />
 
     <ImageButton
-        android:id="@+id/imageButtonShowFiltersFinalSkillList"
+        android:id="@+id/imageButtonShowFiltersSkillList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -64,78 +64,30 @@
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchViewSearchFinalSkillList"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewSearchSkillList"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chipGroupFilterButtonFinalSkillList"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewGadgetSkillList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:addStatesFromChildren="false"
-        android:background="#171616"
-        android:isScrollContainer="false"
-        android:padding="4dp"
-        android:visibility="gone"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonShowFiltersFinalSkillList"
-        app:singleLine="false"
-        app:singleSelection="false">
-
-        <ImageButton
-            android:id="@+id/imageButtonGadgetChinUpBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_logo"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageButton
-            android:id="@+id/imageButtonGadgetFloor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_logo"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageButton
-            android:id="@+id/imageButtonGadgetGymnasticRings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_logo"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageButton
-            android:id="@+id/imageButtonGadgetParallel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_logo"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageButton
-            android:id="@+id/imageButtonGadgetRack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_logo"
-            tools:ignore="VectorDrawableCompat" />
-
-    </com.google.android.material.chip.ChipGroup>
+        app:layout_constraintStart_toStartOf="@+id/imageButtonShowFiltersSkillList"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonShowFiltersSkillList" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewOptionsFinalSkillList"
+        android:id="@+id/recyclerViewOptionsSkillList"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipGroupFilterButtonFinalSkillList" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewGadgetSkillList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

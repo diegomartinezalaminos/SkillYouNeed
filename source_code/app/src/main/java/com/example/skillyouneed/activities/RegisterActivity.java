@@ -21,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 /*  Esta actividad se necarga de dar de altas a los usuarios en la bbdd*/
 public class RegisterActivity extends AppCompatActivity {
 
@@ -101,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
     //Aniadimos información del usuario al la bbdd
     private void addUserToDDBB(String userUID, String email, String name, View v) {
         //Obb del usuario que registramos
-        User userObb = new User(userUID, email, name);
+        User userObb = new User(userUID, email, name, new ArrayList<String>());
 
         db.collection("user")
                 .document(userUID)

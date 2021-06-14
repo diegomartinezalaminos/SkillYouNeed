@@ -13,4 +13,8 @@ public class Constant {
     //Codigos FinalSkillListOnClickListener
     public static String FINALSKILLLISTONCLICKLISTENER_VIDEO = "";
 
+    public static int EDIT_CODE = 222;
+    public static int REFRESH_CODE = 333;
+    public static int ADD_CODE = 444;
+
 }

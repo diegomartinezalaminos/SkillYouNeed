@@ -1,5 +1,7 @@
 package com.example.skillyouneed.models;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.firestore.DocumentReference;
 
 import java.io.Serializable;

@@ -1,25 +1,20 @@
 package com.example.skillyouneed.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.example.skillyouneed.R;
 import com.example.skillyouneed.models.Type;
-import com.example.skillyouneed.reycles.MainActivityOnClickListener;
-import com.example.skillyouneed.reycles.MainAdapterRecycler;
+import com.example.skillyouneed.reycles.listeners.MainActivityOnClickListener;
+import com.example.skillyouneed.reycles.adapters.MainAdapterRecycler;
 import com.example.skillyouneed.utilities.Constant;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -50,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityOnCli
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
