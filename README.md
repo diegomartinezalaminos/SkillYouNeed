@@ -4,7 +4,7 @@
 -   [PDF](https://github.com/diegomartinezalaminos/SkillYouNeed/blob/main/pdf/SkillYouNeed.pdf)
 -   [APK](https://github.com/diegomartinezalaminos/SkillYouNeed/tree/main/apk)
 -   [Source Code](https://www.youtube.com/watch?v=bY5pTQ154s8)
--   [Landing Page](https://www.youtube.com/watch?v=bY5pTQ154s8)
+-   [Landing Page](https://github.com/diegomartinezalaminos/SkillYouNeed/tree/main/landing_page)
 
 ## Descripcion
 La aplicaión va dirigida a todos los apasionados del deporte que quieran aprender o mejorar un determinado movimiento o habilidad deportiva.
