@@ -1,7 +1,7 @@
 # SkillYouNeed <img src="https://github.com/diegomartinezalaminos/SkillYouNeed/blob/main/logo.png" alt="Error al cargar la imagen" width="50" height="50">
 
 -   [Vídeo](https://www.youtube.com/watch?v=bY5pTQ154s8)
--   [PDF](https://www.youtube.com/watch?v=bY5pTQ154s8)
+-   [PDF](https://github.com/diegomartinezalaminos/SkillYouNeed/blob/main/pdf/SkillYouNeed.pdf)
 -   [APK](https://www.youtube.com/watch?v=bY5pTQ154s8)
 -   [Source Code](https://www.youtube.com/watch?v=bY5pTQ154s8)
 -   [Landing Page](https://www.youtube.com/watch?v=bY5pTQ154s8)
