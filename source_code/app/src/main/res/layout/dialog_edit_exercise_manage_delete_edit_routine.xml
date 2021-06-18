@@ -3,57 +3,136 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="#001829">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Sets:"
+        android:textColorHint="@color/white"
+        app:boxCornerRadiusBottomEnd="10dp"
+
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeWidth="2dp"
+        app:boxStrokeWidthFocused="3dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="3"
+        app:counterTextColor="@color/white"
+        app:helperText="*"
+        app:helperTextTextColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:placeholderTextColor="@color/white"
+        app:prefixTextColor="@color/white"
+        app:startIconDrawable="@drawable/ic_sets"
+        app:startIconTint="@color/white"
+        app:suffixTextColor="@color/white"
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextRoundDialogEditExerciseManageDeleteEditRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Round:" />
+            android:inputType="number"
+            android:textColor="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Rep:"
+        android:textColorHint="@color/white"
+        app:boxCornerRadiusBottomEnd="10dp"
+
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeWidth="2dp"
+        app:boxStrokeWidthFocused="3dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="3"
+        app:counterTextColor="@color/white"
+        app:helperText="*"
+        app:helperTextTextColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textInputLayout3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:placeholderTextColor="@color/white"
+        app:prefixTextColor="@color/white"
+        app:startIconDrawable="@drawable/ic_rep"
+        app:startIconTint="@color/white"
+        app:suffixTextColor="@color/white"
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextRepDialogEditExerciseManageDeleteEditRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Rep:" />
+            android:inputType="number"
+            android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:hint="Time(s):"
+        android:textColorHint="@color/white"
+        app:boxCornerRadiusBottomEnd="10dp"
+
+        app:boxCornerRadiusBottomStart="10dp"
+        app:boxCornerRadiusTopEnd="10dp"
+        app:boxCornerRadiusTopStart="10dp"
+        app:boxStrokeWidth="2dp"
+        app:boxStrokeWidthFocused="3dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="5"
+        app:counterTextColor="@color/white"
+        app:helperText="*"
+        app:helperTextTextColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textInputLayout3"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:placeholderTextColor="@color/white"
+        app:prefixTextColor="@color/white"
+        app:startIconDrawable="@drawable/ic_time"
+        app:startIconTint="@color/white"
+        app:suffixTextColor="@color/white"
+
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textInputEditTextTimeDialogEditExerciseManageDeleteEditRoutine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Time:" />
+            android:inputType="number|time"
+            android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

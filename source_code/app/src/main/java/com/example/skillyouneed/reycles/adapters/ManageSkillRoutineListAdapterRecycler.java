@@ -31,7 +31,7 @@ public class ManageSkillRoutineListAdapterRecycler extends FirestoreRecyclerAdap
     @Override
     protected void onBindViewHolder(@NonNull ManageSkillRoutineListAdapterRecycler.ViewHolder holder, int position, @NonNull Routine model) {
         holder.BindHolder(model, position);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addRoutineUid(model.getRoutineUid(), holder, model);

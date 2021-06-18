@@ -4,42 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/purple_500"
+    app:cardCornerRadius="20dp"
     tools:visibility="visible">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="3dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageViewIconRoutineItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_logo"
-            tools:ignore="VectorDrawableCompat" />
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logo" />
 
-        <TextView
-            android:id="@+id/textViewNameRoutineItem"
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TextView" />
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRoutineItem"
+            app:layout_constraintEnd_toStartOf="@+id/textViewRepetitionsRoutineItem"
+            app:layout_constraintStart_toEndOf="@+id/imageViewIconRoutineItem"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRoutineItem">
 
-        <TextView
-            android:id="@+id/textViewRepetitionsRoutineItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="00" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewNameRoutineItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:isScrollContainer="true"
+                    android:text="NameSkill"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:ignore="RtlCompat" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <TextView
             android:id="@+id/textViewRoundsRoutineItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="00" />
-    </LinearLayout>
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="00"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRoutineItem"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRoutineItem"
+            tools:ignore="RtlCompat" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRoutineItem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRoutineItem"
+            app:srcCompat="@drawable/ic_sets" />
+
+        <TextView
+            android:id="@+id/textViewRepetitionsRoutineItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="00"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRoutineItem"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewRepTimeRoutineItem"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRoutineItem"
+            tools:ignore="RtlCompat" />
+
+        <ImageView
+            android:id="@+id/imageViewRepTimeRoutineItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRoutineItem"
+            app:layout_constraintEnd_toStartOf="@+id/textViewRoundsRoutineItem"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRoutineItem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

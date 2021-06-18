@@ -30,10 +30,10 @@ public class ManageAddRoutinesExerciseAdapterRecycler extends FirestoreRecyclerA
     @Override
     protected void onBindViewHolder(@NonNull ManageAddRoutinesExerciseAdapterRecycler.ViewHolder holder, int position, @NonNull Exercise model) {
         holder.BindHolder(model, position);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.onClick(holder.itemView); //TODO llamo al onclick desde aqui porque en la clase ViewHolder no me deja
+                holder.onClick(holder.itemView);
                 checkPosition = position;
                 notifyDataSetChanged();
             }

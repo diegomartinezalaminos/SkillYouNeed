@@ -30,7 +30,7 @@ public class ManageSkillTypeListAdapterRecycler extends FirestoreRecyclerAdapter
     @Override
     protected void onBindViewHolder(@NonNull ManageSkillTypeListAdapterRecycler.ViewHolder holder, int position, @NonNull Type model) {
         holder.BindHolder(model, position);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 holder.onClick(holder.itemView); //TODO llamo al onclick desde aqui porque en la clase ViewHolder no me deja

@@ -3,15 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#090909"
-    android:orientation="vertical"
-    android:padding="8dp">
+    android:background="#001829"
+    android:orientation="vertical">
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/youtube_player_viewVideoDialogVideo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         app:autoPlay="true"
         app:showFullScreenButton="false"
         app:videoId="" />
@@ -22,5 +20,6 @@
         android:layout_height="wrap_content"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:text="Este texto se ha escrito desde el layout"
-        android:textColor="#FFFFFF" />
+        android:textAlignment="textStart"
+        android:textColor="@color/white" />
 </LinearLayout>

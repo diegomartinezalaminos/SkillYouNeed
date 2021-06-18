@@ -3,6 +3,7 @@ package com.example.skillyouneed.reycles.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,10 +31,10 @@ public class ManageSkillGadgetListAdapterRecycler extends FirestoreRecyclerAdapt
     @Override
     protected void onBindViewHolder(@NonNull ManageSkillGadgetListAdapterRecycler.ViewHolder holder, int position, @NonNull Gadget model) {
         holder.BindHolder(model, position);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.onClick(holder.itemView); //TODO llamo al onclick desde aqui porque en la clase ViewHolder no me deja
+                holder.onClick(holder.itemView);
                 checkPosition = position;
                 notifyDataSetChanged();
             }
@@ -68,8 +69,6 @@ public class ManageSkillGadgetListAdapterRecycler extends FirestoreRecyclerAdapt
             icon = (ImageView) itemView.findViewById(R.id.imageViewIconManageSkillGadgetListItem);
             name = (TextView) itemView.findViewById(R.id.textViewNameManageSkillGadgetListItem);
             cardView = (CardView) itemView.findViewById(R.id.cardViewManageSkillGadgetList);
-            //itemView.setOnClickListener(this);
-
         }
 
         public void BindHolder(Gadget model, int position) {

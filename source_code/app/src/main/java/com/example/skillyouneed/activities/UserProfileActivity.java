@@ -45,7 +45,6 @@ import java.util.ArrayList;
 * En el caso de que el usuario logueado sea admin, a demás de todoo lo anterior pordra eliminar o dar
 * de alta a ortros usuario, ejercicios, rutinas, skills en la bbdd */
 public class UserProfileActivity extends AppCompatActivity {
-
     //Variables
     private SentencesFirestore sentence;
     private User user; //(getUserObb)
@@ -103,7 +102,25 @@ public class UserProfileActivity extends AppCompatActivity {
 
         textInputOwnGmailUserProfile.setText(currentUser.getEmail());
         DocumentReference reference = myDB.collection("user").document(currentUser.getUid());
-        //textInputOwnUserNameUserProfile.setText(reference.get().getResult().toObject(User.class).getUserName());
+        reference.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot snapshot) {
+                        textInputOwnUserNameUserProfile.setText(snapshot.toObject(User.class).getUserName());
+                    }
+                });
+
+        DocumentReference referenceAdmin = myDB.collection("user").document(currentUser.getUid());
+        referenceAdmin.get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot snapshot) {
+                        Boolean admin = snapshot.toObject(User.class).getUserAdmin();
+                        if(admin){
+                            scrollViewAdminSectionUserProfile.setVisibility(View.VISIBLE);
+                        }
+                    }
+                });
     }
 
     private void event() {

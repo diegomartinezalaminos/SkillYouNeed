@@ -8,15 +8,6 @@
     tools:context=".ManageDeleteEditGadgetActivity">
 
     <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fondo" />
-
-    <ImageView
         android:id="@+id/imageView28"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,11 +38,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="150dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView25" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayoutEditVisibilityManageDeleteEditGadget"
@@ -81,14 +72,14 @@
             app:boxStrokeWidth="2dp"
             app:boxStrokeWidthFocused="3dp"
             app:counterEnabled="true"
-            app:counterMaxLength="20"
+            app:counterMaxLength="60"
             app:counterTextColor="@color/white"
             app:helperText="*Required"
             app:helperTextTextColor="@color/white"
             app:hintTextColor="@color/white"
             app:placeholderTextColor="@color/white"
             app:prefixTextColor="@color/white"
-            app:startIconDrawable="@drawable/ic_logo"
+            app:startIconDrawable="@drawable/ic_name"
             app:startIconTint="@color/white"
             app:suffixTextColor="@color/white"
 
@@ -105,8 +96,8 @@
             android:id="@+id/textInputLayout6"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
+
             android:layout_marginTop="8dp"
             android:hint="Url Icon:"
             android:textColorHint="@color/white"
@@ -117,14 +108,14 @@
             app:boxStrokeWidth="2dp"
             app:boxStrokeWidthFocused="3dp"
             app:counterEnabled="true"
-            app:counterMaxLength="20"
+            app:counterMaxLength="60"
             app:counterTextColor="@color/white"
             app:helperText="*Required"
             app:helperTextTextColor="@color/white"
             app:hintTextColor="@color/white"
             app:placeholderTextColor="@color/white"
             app:prefixTextColor="@color/white"
-            app:startIconDrawable="@drawable/ic_logo"
+            app:startIconDrawable="@drawable/ic_foto"
             app:startIconTint="@color/white"
             app:suffixTextColor="@color/white">
 
@@ -141,7 +132,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
-            app:srcCompat="@android:drawable/ic_menu_save" />
+            app:srcCompat="@drawable/ic_save" />
 
     </LinearLayout>
 

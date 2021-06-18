@@ -37,11 +37,10 @@ import java.util.ArrayList;
 
 public class ManageAddRoutineActivity extends AppCompatActivity implements ManageRoutinesExerciseOnClickListener/*, AdapterView.OnItemSelectedListener*/{
 
-    private ImageView contentImgSpinner;
-    private TextView contentTxtSpinner;
-    private LinearLayout contentLinearLayoutSpinner;
+    //Spinner
     private ArrayList<Dyfficulty> difficultyArrayList;
     private SpinnerDifficultyAdapter spinnerDifficultyAdapter;
+    private String difficulty;
 
 
     private Boolean pushShowButton = false;
@@ -53,7 +52,6 @@ public class ManageAddRoutineActivity extends AppCompatActivity implements Manag
 
     private ManageAddRoutinesExerciseAdapterRecycler myAdapter;
     private CollectionReference index;
-    private String difficulty;
     private FirebaseFirestore myDB;
     private TextInputEditText textInputNameManageRoutine, textInputDescriptionManageRoutine,
             textInputRepeManageRoutine, textInputRoundManageRoutine, textInputTimeManageRoutine;
@@ -94,10 +92,6 @@ public class ManageAddRoutineActivity extends AppCompatActivity implements Manag
         textInputLayoutRoundManageRoutine = (TextInputLayout) findViewById(R.id.textInputLayoutRoundManageRoutine);
         textInputLayoutTimeManageRoutine = (TextInputLayout) findViewById(R.id.textInputLayoutTimeManageRoutine);
         initRecyclerView();
-        contentImgSpinner = (ImageView) findViewById(R.id.contentImgSpinner);
-        contentTxtSpinner = (TextView) findViewById(R.id.contentTxtSpinner);
-        contentLinearLayoutSpinner = (LinearLayout) findViewById(R.id.contentLinearLayoutSpinner);
-        contentLinearLayoutSpinner.setVisibility(View.GONE);
         llenarLista();
         initSpinner();
 
@@ -106,30 +100,20 @@ public class ManageAddRoutineActivity extends AppCompatActivity implements Manag
     public void llenarLista(){
         difficultyArrayList = new ArrayList<>();
         difficultyArrayList.add(new Dyfficulty(0, "-- Select Difficulty --"));
-        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_logo, "Facil"));
-        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_logo, "Medio"));
-        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_logo, "Dificil"));
+        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_easy, "Facil"));
+        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_midel, "Medio"));
+        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_difficult, "Dificil"));
     }
 
     private  void initSpinner(){
 
-        spinnerDifficultyAdapter = new SpinnerDifficultyAdapter(this, difficultyArrayList);
+        spinnerDifficultyAdapter = new SpinnerDifficultyAdapter(this, difficultyArrayList, 0);
         spinnerDifficultyManageRoutine.setAdapter(spinnerDifficultyAdapter);
         spinnerDifficultyManageRoutine.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Dyfficulty difficultyObb = difficultyArrayList.get(position);
                 difficulty = difficultyObb.getName();
-                if (position == 0){
-                    contentLinearLayoutSpinner.setVisibility(View.GONE);
-                }
-
-                if (position != 0){
-                    contentLinearLayoutSpinner.setVisibility(View.VISIBLE);
-                    contentImgSpinner.setImageResource(difficultyObb.getIcon());
-                    contentTxtSpinner.setText(difficultyObb.getName());
-
-                }
             }
 
             @Override
@@ -137,17 +121,6 @@ public class ManageAddRoutineActivity extends AppCompatActivity implements Manag
 
             }
         });
-
-
-
-
-
-/*
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.difficulty_array, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinnerDifficultyManageRoutine.setAdapter(spinnerAdapter);
-        spinnerDifficultyManageRoutine.setOnItemSelectedListener(this);*/
-        Log.d("DebugManageRoutine: ", "initSpinner");
     }
 
     private void initRecyclerView() {
@@ -353,19 +326,8 @@ public class ManageAddRoutineActivity extends AppCompatActivity implements Manag
         recyclerViewExerciseManageRoutine.setAdapter(myAdapter);
     }
 
-/*    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        difficulty = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }*/
-
     @Override
     public void onItemClick(Exercise model, int position) {
         seletExerciseUid = model.getExerciseUid();
-        Log.d("DebugManageRoutine:", "Obtener el id del ejercicio pulsado");
     }
 }

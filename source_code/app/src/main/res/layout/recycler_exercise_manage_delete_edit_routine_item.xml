@@ -1,42 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp">
+    android:layout_marginTop="4dp"
+    app:cardBackgroundColor="@color/purple_500"
+    app:cardCornerRadius="15dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_logo" />
 
-        <TextView
-            android:id="@+id/textViewNameRecyclerExerciseManageDeleteEditRoutineItem"
-            android:layout_width="wrap_content"
+        <HorizontalScrollView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nombre del ejercicio" />
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonEditRecyclerExerciseManageDeleteEditRoutineItem"
+            app:layout_constraintStart_toEndOf="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem"
+            app:layout_constraintVertical_bias="0.666">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewNameRecyclerExerciseManageDeleteEditRoutineItem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Nombre:"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <ImageButton
             android:id="@+id/imageButtonEditRecyclerExerciseManageDeleteEditRoutineItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@android:style/Widget.Holo.Light.ImageButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            android:background="@drawable/ic_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem"
+            app:layout_constraintEnd_toStartOf="@+id/imageButtonDeleteRecyclerExerciseManageDeleteEditRoutineItem"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem" />
 
         <ImageButton
             android:id="@+id/imageButtonDeleteRecyclerExerciseManageDeleteEditRoutineItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@android:style/Widget.Holo.Light.ImageButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_delete" />
-    </LinearLayout>
+            android:background="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageViewIconRecyclerExerciseManageDeleteEditRoutineItem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

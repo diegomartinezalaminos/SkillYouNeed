@@ -18,14 +18,20 @@ import java.util.ArrayList;
 
 public class SpinnerDifficultyAdapter extends ArrayAdapter<Dyfficulty> {
 
-    public SpinnerDifficultyAdapter(@NonNull Context context, @NonNull ArrayList<Dyfficulty> model) {
+    int pos;
+
+    public SpinnerDifficultyAdapter(@NonNull Context context, @NonNull ArrayList<Dyfficulty> model, int pos) {
         super(context, 0, model);
+        this.pos = pos;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         //return super.getView(position, convertView, parent);
+        if (pos != 0 && position == 0){
+            return viewInicialUpdate(pos, convertView, parent);
+        }
         return view (position, convertView, parent);
     }
 
@@ -53,6 +59,7 @@ public class SpinnerDifficultyAdapter extends ArrayAdapter<Dyfficulty> {
     }
 
     private View viewInicial(int position, View convertView, ViewGroup parent){
+
         convertView = LayoutInflater.from(getContext()).inflate(
                 R.layout.spinner_difficulty_inicial_item, parent, false
         );
@@ -61,5 +68,20 @@ public class SpinnerDifficultyAdapter extends ArrayAdapter<Dyfficulty> {
         TextView name = convertView.findViewById(R.id.textViewNameDifficultySpinnerDifficultyInicialItem);
         name.setText(difficultyObb.getName());
         return  convertView;
+    }
+
+    private View viewInicialUpdate(int position, View convertView, ViewGroup parent){
+
+        convertView = LayoutInflater.from(getContext()).inflate(
+                R.layout.spinner_difficulty_item, parent, false
+        );
+
+        ImageView icon = convertView.findViewById(R.id.imageViewIconSpinnerDifficultyItem);
+        TextView name = convertView.findViewById(R.id.textViewNameSpinnerDifficultyItem);
+
+        Dyfficulty difficultyObb = getItem(position);
+        icon.setImageResource(difficultyObb.getIcon());
+        name.setText(difficultyObb.getName());
+        return convertView;
     }
 }

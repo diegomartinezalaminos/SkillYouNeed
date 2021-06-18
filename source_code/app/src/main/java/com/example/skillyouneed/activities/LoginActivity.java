@@ -14,6 +14,7 @@ import com.example.skillyouneed.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,9 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     //Varibles
     private FirebaseUser currentUser = null;
     private FirebaseAuth mAuth;
-    private TextView textViewLoginEmail, textViewLoginPassword;
-    private Button buttonLoginLogin, buttonLoginRegister, buttonLoginForguetPassword;
-    private ImageButton imageButtonLoginGoogle;
+    private TextInputEditText textInputEditTextEmailLogin, textInputEditTextPasswordLogin;
+    private Button buttonLoginLogin, buttonLoginRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initLayout() {
-        textViewLoginEmail = (TextView) findViewById(R.id.editTextLoginEmail);
-        textViewLoginPassword = (TextView) findViewById(R.id.editTextLoginPassword);
+        textInputEditTextEmailLogin = (TextInputEditText) findViewById(R.id.textInputEditTextEmailLogin);
+        textInputEditTextPasswordLogin = (TextInputEditText) findViewById(R.id.textInputEditTextPasswordLogin);
         buttonLoginLogin = (Button) findViewById(R.id.buttonLoginLogin);
         buttonLoginRegister = (Button) findViewById(R.id.buttonLoginRegister);
-        buttonLoginForguetPassword = (Button) findViewById(R.id.buttonLoginForguetPassword);
     }
 
     private void initDataBase() {
@@ -57,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                 String textLoginEmail = "";
                 String textPassword = "";
 
-                textLoginEmail = textViewLoginEmail.getText().toString();
-                textPassword = textViewLoginPassword.getText().toString();
+                textLoginEmail = textInputEditTextEmailLogin.getText().toString();
+                textPassword = textInputEditTextPasswordLogin.getText().toString();
 
                 if (!textLoginEmail.isEmpty() && !textPassword.isEmpty()){
                     mAuth.signInWithEmailAndPassword(textLoginEmail,textPassword)
@@ -77,8 +76,8 @@ public class LoginActivity extends AppCompatActivity {
                             });
 
                 }else {
-                    textViewLoginPassword.setError(getText(R.string.ErrorEmptyField));
-                    textViewLoginEmail.setError(getText(R.string.ErrorEmptyField));
+                    textInputEditTextPasswordLogin.setError(getText(R.string.ErrorEmptyField));
+                    textInputEditTextEmailLogin.setError(getText(R.string.ErrorEmptyField));
                 }
             }
         });
@@ -91,16 +90,6 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        buttonLoginForguetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, ChangePasswordActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });
-
     }
 
     @Override

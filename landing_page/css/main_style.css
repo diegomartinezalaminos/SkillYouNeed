@@ -1,0 +1,352 @@
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Chakra Petch', sans-serif;
+    scroll-behavior: smooth;
+}
+
+/*------------------------------Menu--------------------------------------*/
+
+/*Fijamos el nav en la parte superio derecha para que no se mueva*/
+nav{
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    display:flex;
+    justify-content: flex-start;
+}
+
+nav a{
+    color:#fff;
+    text-decoration: none;
+    font-weight: 300;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#main_menu{
+    display: block;
+    z-index: 10; /*Sobresalga el menu*/
+    animation:move_left 1s ease-in;
+}
+
+#links_menu{
+    position:fixed;
+    display:flex;
+    top:0;
+    justify-content:space-around;
+    align-items: center;
+    height:100vh;
+    right: 0;
+    flex-direction: column;
+    width:100%;
+    /*Gradient css https://uigradients.com/#MoonPurple*/
+    background: #355C7D;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #C06C84, #6C5B7B, #355C7D);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #C06C84, #6C5B7B, #355C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    transition: all 1s ease-in;
+}
+
+.inicial_menu{
+    clip-path: polygon(0 0, 100% 0, 0% 0%, 0 100%);
+}
+
+.final_menu{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/*----------------------------Header-----------------------------------------*/
+
+header {
+    /*Gradient css https://uigradients.com/#MoonPurple*/
+    background: #4e54c8;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: auto;
+    padding: 50px;
+    width: 100%;
+}
+
+/*Alinear los elementos*/
+.container {
+    width: 90%;
+    height: 90%;
+    max-width: 1200px;
+    display:flex;
+    align-items: center;
+    justify-content:space-around; /*Para distribuir los bloques(elementos) en el espacio disponible*/
+    margin: auto;
+}
+
+img{
+    display: block;
+    height: 450px;
+    object-fit: cover; /*Propiedad de la img para que no pierda la proporción*/
+    width: auto;
+    animation:move_up 1s ease-in;
+}
+
+.texts{
+    width: 50%; /*No queremos que supere mas del 50%*/
+    color:#fff;
+}
+
+.texts svg{
+    width:263.292px;
+    height:auto;
+}
+
+.texts h2{
+    font-size: 15px;
+    animation:move_left 1s ease-in;
+}
+
+.texts a{
+    display: inline-block; /*Para poder poner un padding y margin*/
+    color:#fff;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: 300;
+    border: 1px solid #fff;
+    width: 150px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    animation:move_up 1s ease-in;
+}
+
+/*-----------------------------Text SVH-----------------------*/
+
+#svg_text{
+    animation:text_svg_fill 0.5s ease forwards 3;
+    animation:move_left 1s ease-in;
+}
+
+#svg_text path:nth-child(1){
+    stroke-dasharray: 267px;
+    stroke-dashoffset: 267px;
+    animation: text_svg_animate 2s ease forwards;
+    
+}
+
+#svg_text path:nth-child(2){
+    stroke-dasharray: 267px;
+    stroke-dashoffset: 267px;
+    animation: text_svg_animate 2s ease forwards 0.4;
+}
+
+#svg_text path:nth-child(3){
+    stroke-dasharray: 267px;
+    stroke-dashoffset: 267px;
+    animation: text_svg_animate 2s ease forwards 0.2;
+}
+
+#svg_text path:nth-child(4){
+    stroke-dasharray: 267px;
+    stroke-dashoffset: 267px;
+    animation: text_svg_animate 2s ease forwards 0.3;
+}
+
+#svg_text path:nth-child(5){
+    stroke-dasharray: 267px;
+    stroke-dashoffset: 267px;
+    animation: text_svg_animate 2s ease forwards 0.4;
+}
+
+#svg_text path:nth-child(6){
+    stroke-dasharray: 298px;
+    stroke-dashoffset: 298px;
+    animation: text_svg_animate 2s ease forwards 0.5;
+}
+
+#svg_text path:nth-child(7){
+    stroke-dasharray: 1000px;
+    stroke-dashoffset: 1000px;
+    animation: text_svg_animate 2s ease forwards 0.6;
+}
+
+#svg_text path:nth-child(8){
+    stroke-dasharray: 290px;
+    stroke-dashoffset: 290px;
+    animation: text_svg_animate 2s ease forwards 0.7;
+}
+
+#svg_text path:nth-child(9){
+    stroke-dasharray: 272px;
+    stroke-dashoffset: 272px;
+    animation: text_svg_animate 2s ease forwards 0.8;
+}
+
+#svg_text path:nth-child(10){
+    stroke-dasharray: 267px;
+    stroke-dashoffset: 267px;
+    animation: text_svg_animate 2s ease forwards 0.9;
+}
+
+#svg_text path:nth-child(11){
+    stroke-dasharray: 267px;
+    stroke-dashoffset: 267px;
+    animation: text_svg_animate 2s ease forwards 1;
+}
+
+#svg_text path:nth-child(12){
+    stroke-dasharray: 430px;
+    stroke-dashoffset: 430px;
+    animation: text_svg_animate 1s ease forwards 1;
+}
+
+/*-------------------------------------Wave---------------------*/
+
+.wave {
+    height: 100px;
+    width: 100%;
+        /*Gradient css https://uigradients.com/#MoonPurple*/
+        background: #4e54c8;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        /*Wave css https://smooth.ie/blogs/news*/
+}
+
+/*-------------------------------------video------------------------*/
+.contenedor_flex{
+    display: flex;
+    flex-wrap: row nowrap;
+    width: 100%;
+}
+
+.contenedor_flex #video {
+    width: 100%;
+}
+
+.contenedor_flex #video iframe {
+    width: 100%;
+}
+
+
+/*--------------------------------------------Media queris-----------------------------------*/
+@media screen and (max-width: 1000px){
+    #ic_logo{
+        height:400px;
+    }
+
+}
+
+@media screen and (max-width: 800px){
+    #ic_logo{
+        height: 300px;
+    }
+
+    .texts svg{
+        width:200px;
+        height:auto;
+    }
+
+}
+
+@media screen and (max-width: 750px){
+    #ic_logo{
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 450px){
+
+    .container{
+        width: 100%;
+        flex-wrap: wrap-reverse;
+        justify-content:center;
+    }
+
+    #ic_logo{
+        height: 200px;
+    }
+
+    .texts{
+        width: 100%;
+        text-align: center;
+    }
+
+    .texts svg{
+        margin-top: 15px;
+        width:150px;
+        height:auto;
+    }
+
+    .texts h2{
+        font-size:10px;
+    }
+}
+
+
+
+/*--------------------------------------------Animaciones------------------------------------*/
+/*Animaciones keyFrame*/
+/*Mover a la izquierda*/
+@keyframes move_left{
+    0%{
+        opacity:0;
+        transform:translateX(-100px); /*Transladamos a la izquierda 100px*/
+    }
+    100%{
+        opacity:1;
+        transform:translate(0);
+    }
+}
+
+/*Mover arriba*/
+@keyframes move_up{
+    0%{
+        opacity:0;
+        transform:translateY(100px); /*Transladamos a la izquierda 100px*/
+    }
+    100%{
+        opacity:1;
+        transform:translate(0);
+    }
+}
+
+/*Mover derecha*/
+@keyframes move_right{
+    0%{
+        opacity:0;
+        transform:translateX(100px); /*Transladamos a la izquierda 100px*/
+    }
+    100%{
+        opacity:1;
+        transform:translate(0);
+    }
+}
+
+/*Mover abajo*/
+@keyframes move_down{
+    0%{
+        opacity:0;
+        transform:translateY(-100px); /*Transladamos a la izquierda 100px*/
+    }
+    100%{
+        opacity:1;
+        transform:translate(0);
+    }
+}
+
+@keyframes text_svg_animate{
+    to{
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes text_svg_fill{
+    from{
+        fill:transparent;
+    }
+    to{
+        fill:white;
+    }
+}
+

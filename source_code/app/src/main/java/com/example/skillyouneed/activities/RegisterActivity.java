@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 public class RegisterActivity extends AppCompatActivity {
 
     //Variables
-    private EditText editTextRegisterName, editTextRegisterEmail, editTextRegisterPassword, editTextRegisterPasswordRepeat;
+    private TextInputEditText textInputEditTextNameRegister, textInputEditTextEmailRegister, textInputEditTextPasswordRegister, textInputEditTextRepeatPasswordRegister;
     private Button buttonRegisterRegister;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -45,10 +47,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initLayout() {
-        editTextRegisterName = (EditText) findViewById(R.id.editTextRegisterName);
-        editTextRegisterEmail = (EditText) findViewById(R.id.editTextRegisterEmail);
-        editTextRegisterPassword = (EditText) findViewById(R.id.editTextRegisterPassword);
-        editTextRegisterPasswordRepeat = (EditText) findViewById(R.id.editTextRegisterPasswordRepeat);
+        textInputEditTextNameRegister = (TextInputEditText) findViewById(R.id.textInputEditTextNameRegister);
+        textInputEditTextEmailRegister = (TextInputEditText) findViewById(R.id.textInputEditTextEmailRegister);
+        textInputEditTextPasswordRegister = (TextInputEditText) findViewById(R.id.textInputEditTextPasswordRegister);
+        textInputEditTextRepeatPasswordRegister = (TextInputEditText) findViewById(R.id.textInputEditTextRepeatPasswordRegister);
         buttonRegisterRegister = (Button) findViewById(R.id.buttonRegisterRegister);
     }
 
@@ -62,21 +64,19 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegisterRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = editTextRegisterName.getText().toString();
-                String email = editTextRegisterEmail.getText().toString();
-                String password = editTextRegisterPassword.getText().toString();
-                String passwordRepeat = editTextRegisterPasswordRepeat.getText().toString();
+                String user = textInputEditTextNameRegister.getText().toString();
+                String email = textInputEditTextEmailRegister.getText().toString();
+                String password = textInputEditTextPasswordRegister.getText().toString();
+                String passwordRepeat = textInputEditTextRepeatPasswordRegister.getText().toString();
 
                 if (!user.isEmpty() && !email.isEmpty() && !password.isEmpty() && !passwordRepeat.isEmpty()){
 
-                    if (password.equals(passwordRepeat)){
+                    if (password.equals(passwordRepeat) && password.length() > 7){
                         mAuth.createUserWithEmailAndPassword(email, password)
                                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if (task.isSuccessful()){
-
-                                            //Aniadimos informacion del usuario a la bbdd
                                             userUID = mAuth.getCurrentUser().getUid();
                                             addUserToDDBB(userUID, email, user, v);
 
@@ -89,18 +89,17 @@ public class RegisterActivity extends AppCompatActivity {
                                 });
 
                     }else {
-                        editTextRegisterPasswordRepeat.setError(getText(R.string.NotEqualsPassword));
+                        textInputEditTextPasswordRegister.setError("La contraseña no es la misma o es demasiado corta (8 caracteres)");
                     }
 
                 } else {
-                    Snackbar.make(v, R.string.ErrorEmptyField, Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, "Campo Obligatorio", Snackbar.LENGTH_SHORT).show();
                 }
 
             }
         });
     }
 
-    //Aniadimos información del usuario al la bbdd
     private void addUserToDDBB(String userUID, String email, String name, View v) {
         //Obb del usuario que registramos
         User userObb = new User(userUID, email, name, new ArrayList<String>());

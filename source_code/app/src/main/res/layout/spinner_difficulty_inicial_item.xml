@@ -18,10 +18,11 @@
             android:layout_height="match_parent"
             android:text="-- Seleccionar dificultad --"
             android:layout_gravity="center"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
             android:textStyle="bold"
             android:textSize="20dp"
             android:textColor="@color/black"/>
+
     </LinearLayout>
 
 </LinearLayout>

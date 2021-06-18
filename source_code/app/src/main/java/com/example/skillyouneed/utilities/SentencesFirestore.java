@@ -2,6 +2,7 @@ package com.example.skillyouneed.utilities;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -26,6 +27,32 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class SentencesFirestore {
+    //-----------------------Format url-------------------//
+    public String stringUrlFormat(String str){
+        if (str.length() > 28){
+            int startPositionUrlPc = str.indexOf("https://www.youtube.com/watch?v=") + 32; //Url web pc
+            if (startPositionUrlPc != 31){
+                int finalPositionUrlPc = startPositionUrlPc + 11; //11 es el numero de caracteres que tienen las id de yt
+                String ytUid = str.substring(startPositionUrlPc, finalPositionUrlPc);
+                return ytUid;
+            }else {
+                return "error";
+            }
+        } else if (str.length() > 17 && str.length() < 29){
+            int startPositionUrlMo = str.indexOf("https://youtu.be/") + 17; //Url app yt
+            if (startPositionUrlMo != 16){
+                int finalPositionUrlMo = startPositionUrlMo + 11; //11 es el numero de caracteres que tienen las id de yt
+                String ytUid = str.substring(startPositionUrlMo, finalPositionUrlMo);
+                return ytUid;
+            } else {
+                return "error";
+            }
+
+        } else {
+            return "error";
+        }
+    }
+
     //-----------------------Add user---------------------//
 
     //----------------------Delete user-------------------//

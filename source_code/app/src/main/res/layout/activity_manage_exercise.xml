@@ -8,15 +8,6 @@
     tools:context=".ManageAddExerciseActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fondo" />
-
-    <ImageView
         android:id="@+id/imageView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="CREAR EJERCICIO"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,59 +49,158 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
+                android:layout_height="match_parent"
+                android:hint="Nombre:"
+                android:textColorHint="@color/white"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidthFocused="3dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="60"
+                app:counterTextColor="@color/white"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:placeholderTextColor="@color/white"
+                app:prefixTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_name"
+                app:startIconTint="@color/white"
+                app:suffixTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputNameManageExercise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nombre:" />
+                    android:inputType="text"
+                    android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:hint="Descripción:"
+                android:textColorHint="@color/white"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidthFocused="3dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="20"
+                app:counterTextColor="@color/white"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:placeholderTextColor="@color/white"
+                app:prefixTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_descripcion"
+                app:startIconTint="@color/white"
+
+                app:suffixTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputDescriptionManageExercise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Descripcion:" />
+                    android:inputType="text"
+                    android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
                 android:id="@+id/spinnerDifficultyManageExercise"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/spinner_difficulty_style"
+                tools:listitem="@layout/spinner_difficulty_item"/>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:hint="Url icon:"
+                android:textColorHint="@color/white"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidthFocused="3dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="60"
+                app:counterTextColor="@color/white"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:placeholderTextColor="@color/white"
+                app:prefixTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_foto"
+                app:startIconTint="@color/white"
+
+                app:suffixTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputUrlIconManageExercise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Url Icono:" />
+                    android:inputType="text"
+                    android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:hint="Url Video:"
+                android:textColorHint="@color/white"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                app:boxStrokeWidth="2dp"
+                app:boxStrokeWidthFocused="3dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="60"
+                app:counterTextColor="@color/white"
+                app:helperText="*Required"
+                app:helperTextTextColor="@color/white"
+                app:hintTextColor="@color/white"
+                app:placeholderTextColor="@color/white"
+                app:prefixTextColor="@color/white"
+                app:startIconDrawable="@drawable/ic_yt"
+                app:startIconTint="@color/white"
+
+                app:suffixTextColor="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInputUrlVideoManageExercise"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Url Video:" />
+                    android:inputType="text"
+                    android:textColor="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
                 android:id="@+id/imageButtonAddExerciseManageExercise"
+                style="@android:style/Widget.Holo.Light.ImageButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@android:drawable/ic_menu_add" />
+                android:layout_marginTop="8dp"
+                app:srcCompat="@drawable/ic_save" />
 
         </LinearLayout>
     </ScrollView>

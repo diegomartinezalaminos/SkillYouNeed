@@ -15,16 +15,21 @@ import com.example.skillyouneed.models.Exercise;
 import com.example.skillyouneed.models.Routine;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
 
 public class RoutineListAdapterRecycler extends FirestoreRecyclerAdapter<Exercise, RoutineListAdapterRecycler.ViewHolder> {
 
     private Routine routine;
+    private MaterialAlertDialogBuilder madb;
 
     public RoutineListAdapterRecycler(@NonNull FirestoreRecyclerOptions<Exercise> options, Routine routine) {
         super(options);
-        this.routine = routine; //TODO El obb de prueba que se le pasa le llega bien con todos los datos.
-        Log.d("Routine", routine.getRoutineName());
+        this.routine = routine;
     }
 
     @Override
@@ -41,23 +46,16 @@ public class RoutineListAdapterRecycler extends FirestoreRecyclerAdapter<Exercis
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView icon;
+        private ImageView icon, repTime;
         private TextView name, reps, rounds;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             icon = itemView.findViewById(R.id.imageViewIconRoutineItem);
             name = itemView.findViewById(R.id.textViewNameRoutineItem);
             reps = itemView.findViewById(R.id.textViewRepetitionsRoutineItem);
             rounds = itemView.findViewById(R.id.textViewRoundsRoutineItem);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    //TODO mostrar video del ejercicio junto con descripción
-                }
-            });
+            repTime = itemView.findViewById(R.id.imageViewRepTimeRoutineItem);
         }
 
         public void BindHolder(Exercise exercise, int position) {
@@ -70,13 +68,45 @@ public class RoutineListAdapterRecycler extends FirestoreRecyclerAdapter<Exercis
 
             //En los siguinetes condicionales comprobamos si se va ha usar el sistema de repes para el ejercicio o tiempo en segundos
             if (routine.getRoutineRep().get(position) > 0 && routine.getRoutineTime().get(position) == 0){
-                reps.setText(routine.getRoutineRep().get(position).toString() + " rep");
+                reps.setText(routine.getRoutineRep().get(position).toString());
+                repTime.setBackgroundResource(R.drawable.ic_rep);
             } else if (routine.getRoutineRep().get(position) == 0 && routine.getRoutineTime().get(position) > 0){
-                reps.setText(routine.getRoutineTime().get(position).toString() + " sec");
+
+                reps.setText(routine.getRoutineTime().get(position).toString());
+                repTime.setBackgroundResource(R.drawable.ic_time);
             } else {
                 Log.e("error_rutina", "Los valores time y rep no pueden ser los dos en la misma posición 0 o mayor");
             }
             rounds.setText(routine.getRoutineSet().get(position).toString() + " set");
+
+            icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    madb = new MaterialAlertDialogBuilder(v.getContext());
+                    View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_video, null);
+                    madb.setView(dialogView).setCancelable(true);
+                    madb.create().show();
+                    TextView descripcion;
+                    descripcion = dialogView.findViewById(R.id.textViewDescripcionDialogVideo);
+                    YouTubePlayerView video;
+                    video = dialogView.findViewById(R.id.youtube_player_viewVideoDialogVideo);
+                    descripcion.setText(exercise.getExerciseDescription());
+
+                    video.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                        @Override
+                        public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                            String videoId = exercise.getExerciseUrlVideo();
+                            youTubePlayer.loadVideo(videoId, 0);
+                        }
+
+                        @Override
+                        public void onError(YouTubePlayer youTubePlayer, PlayerConstants.PlayerError error) {
+                            String videoId = exercise.getExerciseUrlVideo();
+                            youTubePlayer.loadVideo(videoId, 0);
+                        }
+                    });
+                }
+            });
         }
     }
 }

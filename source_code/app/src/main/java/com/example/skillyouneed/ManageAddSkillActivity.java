@@ -14,6 +14,8 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import com.example.skillyouneed.adapters.SpinnerDifficultyAdapter;
+import com.example.skillyouneed.models.Dyfficulty;
 import com.example.skillyouneed.models.Gadget;
 import com.example.skillyouneed.models.Routine;
 import com.example.skillyouneed.models.Skill;
@@ -24,6 +26,7 @@ import com.example.skillyouneed.reycles.adapters.ManageSkillRoutineListAdapterRe
 import com.example.skillyouneed.reycles.listeners.ManageSkillRoutineListOnClickListener;
 import com.example.skillyouneed.reycles.adapters.ManageSkillTypeListAdapterRecycler;
 import com.example.skillyouneed.reycles.listeners.ManageSkillTypeListOnClickListener;
+import com.example.skillyouneed.utilities.SentencesFirestore;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,21 +41,26 @@ import java.util.ArrayList;
 
 public class ManageAddSkillActivity extends AppCompatActivity implements ManageSkillTypeListOnClickListener, ManageSkillGadgetListOnClickListener, ManageSkillRoutineListOnClickListener, AdapterView.OnItemSelectedListener {
 
+    //Spinner
+    private ArrayList<Dyfficulty> difficultyArrayList;
+    private SpinnerDifficultyAdapter spinnerDifficultyAdapter;
+    private String difficulty;
+    //DB
     private FirebaseFirestore myDB;
+    private CollectionReference index;
+    //OnCLick
     private String typeUid = "", gadgetUid = "";
     private ArrayList<String> routineUidArrayList = new ArrayList<>();
+    //Adapters Recycler
     private ManageSkillTypeListAdapterRecycler typeAdapter;
     private ManageSkillGadgetListAdapterRecycler gadgetAdapter;
     private ManageSkillRoutineListAdapterRecycler routineAdapter;
-    private String difficulty;
-    private CollectionReference index;
-
+    //Layout
     private TextInputEditText textInputEditTextNameManageSkill, textInputEditTextDescriptionManageSkill,
             textInputEditTextUrlIconManageSkill, textInputEditTextUrlVideoManageSkill;
     private Spinner spinnerDifficultyManageSkill;
     private RecyclerView recyclerViewTypeManageSkill, recyclerViewGadgetManageSkill, recyclerViewRoutineManageSkill;
     private ImageButton imageButtonSaveManageSkill;
-    private SearchView searchViewSeachFilterRoutineListManageSkill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,18 +87,39 @@ public class ManageAddSkillActivity extends AppCompatActivity implements ManageS
         recyclerViewGadgetManageSkill = (RecyclerView) findViewById(R.id.recyclerViewGadgetManageSkill);
         recyclerViewRoutineManageSkill = (RecyclerView) findViewById(R.id.recyclerViewRoutineManageSkill);
         imageButtonSaveManageSkill = (ImageButton) findViewById(R.id.imageButtonSaveManageSkill);
-        searchViewSeachFilterRoutineListManageSkill = (SearchView) findViewById(R.id.searchViewSeachFilterRoutineListManageSkill);
         initRecyclerType();
         initRecyclerGadget();
         initRecyclerRoutine();
+        llenarLista();
+        initSpinner();
         initSpinner();
     }
 
+    public void llenarLista(){
+        difficultyArrayList = new ArrayList<>();
+        difficultyArrayList.add(new Dyfficulty(0, "-- Select Difficulty --"));
+        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_logo, "Facil"));
+        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_logo, "Medio"));
+        difficultyArrayList.add(new Dyfficulty(R.drawable.ic_logo, "Dificil"));
+    }
+
+
     private  void initSpinner(){
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.difficulty_array, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinnerDifficultyManageSkill.setAdapter(spinnerAdapter);
-        spinnerDifficultyManageSkill.setOnItemSelectedListener(this);
+
+        spinnerDifficultyAdapter = new SpinnerDifficultyAdapter(this, difficultyArrayList, 0);
+        spinnerDifficultyManageSkill.setAdapter(spinnerDifficultyAdapter);
+        spinnerDifficultyManageSkill.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Dyfficulty difficultyObb = difficultyArrayList.get(position);
+                difficulty = difficultyObb.getName();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initRecyclerRoutine() {
@@ -145,20 +174,6 @@ public class ManageAddSkillActivity extends AppCompatActivity implements ManageS
     }
 
     private void events() {
-        searchViewSeachFilterRoutineListManageSkill.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                searchFilterRoutineList(query, "routineName");
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                searchFilterRoutineList(newText, "routineName");
-                return false;
-            }
-        });
-
         imageButtonSaveManageSkill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,9 +184,16 @@ public class ManageAddSkillActivity extends AppCompatActivity implements ManageS
                 urlVideo = textInputEditTextUrlVideoManageSkill.getText().toString();
 
                 if (!name.isEmpty() && !description.isEmpty() && !urlIcon.isEmpty() && !urlVideo.isEmpty() && !difficulty.isEmpty() && !typeUid.isEmpty() && !gadgetUid.isEmpty() && !routineUidArrayList.isEmpty()){
-                    Skill skillObb = new Skill(null, name, description, difficulty, urlIcon, urlVideo, gadgetUid, typeUid, routineUidArrayList);
-                    addSkill(skillObb);
-                    initRecyclerRoutine();
+                    SentencesFirestore sentence = new SentencesFirestore();
+                    String solution = sentence.stringUrlFormat(urlVideo);
+                    if (solution.equals("error")){
+                        Snackbar.make(textInputEditTextUrlVideoManageSkill, "La url tiene que ser de YT y válida", Snackbar.LENGTH_SHORT).show();
+                    }else {
+                        urlVideo = solution;
+                        Skill skillObb = new Skill(null, name, description, difficulty, urlIcon, urlVideo, gadgetUid, typeUid, routineUidArrayList);
+                        addSkill(skillObb);
+                        initRecyclerRoutine();
+                    }
                 }else {
                     Snackbar.make(v, "Todos los campos son obligatorios", Snackbar.LENGTH_SHORT).show();
                 }
@@ -221,58 +243,6 @@ public class ManageAddSkillActivity extends AppCompatActivity implements ManageS
         gadgetUid = "";
     }
 
-    private void searchFilterRoutineList(String strSearch, String fieldName){
-
-        Query query = myDB
-                .collection("routine")
-                .orderBy(fieldName)
-                .startAt(strSearch)
-                .endAt(strSearch + "\uf8ff");
-
-        FirestoreRecyclerOptions<Routine> myOptions = new FirestoreRecyclerOptions
-                .Builder<Routine>()
-                .setLifecycleOwner(this)
-                .setQuery(query, Routine.class)
-                .build();
-
-        routineAdapter = new ManageSkillRoutineListAdapterRecycler(myOptions, this);
-        routineAdapter.notifyDataSetChanged();
-        recyclerViewRoutineManageSkill.setAdapter(routineAdapter);
-    }
-
-    private void addRoutineUid(String selectRoutineUid) {
-
-        Log.d("DebugManageSkill: ", "He entrado en la funcoin");
-
-        if (routineUidArrayList.isEmpty()){
-            routineUidArrayList.add(selectRoutineUid);
-            Log.d("DebugManageSkill: ", "Array bacio añadimos " + selectRoutineUid);
-
-        }else {
-
-            boolean repeatUid = false;
-            int positionRepeatUid = -1;
-
-            for (int x = 0; x < routineUidArrayList.size(); x++){
-                if (routineUidArrayList.get(x).equals(selectRoutineUid)){
-                    repeatUid = true;
-                    positionRepeatUid = x;
-                    Log.d("DebugManageSkill: ", "Se ha encontrado un elemento repetido " + selectRoutineUid);
-                }
-            }
-            if (repeatUid){
-                routineUidArrayList.remove(positionRepeatUid);
-                Log.d("DebugManageSkill: ", "Se ha eleiminado el elemento repetido" + selectRoutineUid);
-            }else {
-                routineUidArrayList.add(selectRoutineUid);
-            }
-
-        }
-        for (int u = 0; u < routineUidArrayList.size(); u++){
-            Log.d("DebugManageSkill: ", "[" + u + "] --> "  + routineUidArrayList.get(u));
-        }
-    }
-
     @Override
     public void OnItemClick(Type model, int position) {
         typeUid = model.getTypeUid();
@@ -287,8 +257,6 @@ public class ManageAddSkillActivity extends AppCompatActivity implements ManageS
 
     @Override
     public void onItemClick(Routine model, int position, ArrayList<String> routineUidArrayList) {
-        //addRoutineUid(model.getRoutineUid());
-        //routineUid.add(model.getRoutineUid());
         this.routineUidArrayList = routineUidArrayList;
         Log.d("DebugManageSkill: ", "--------- ArrayRutina clase ManageSkills ---------");
         for (int u = 0; u < this.routineUidArrayList.size(); u++){

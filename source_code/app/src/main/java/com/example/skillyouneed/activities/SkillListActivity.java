@@ -12,13 +12,17 @@ import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import com.example.skillyouneed.R;
+import com.example.skillyouneed.RoutineActivity;
 import com.example.skillyouneed.models.Exercise;
 import com.example.skillyouneed.models.Gadget;
+import com.example.skillyouneed.models.Routine;
 import com.example.skillyouneed.models.Skill;
 import com.example.skillyouneed.models.Type;
 import com.example.skillyouneed.reycles.adapters.ManageAddRoutinesExerciseAdapterRecycler;
+import com.example.skillyouneed.reycles.adapters.ManageSkillRoutineListAdapterRecycler;
 import com.example.skillyouneed.reycles.adapters.SkillListAdapterRecycler;
 import com.example.skillyouneed.reycles.adapters.SkillListGadgetFilterAdapterRecycler;
+import com.example.skillyouneed.reycles.listeners.SkillListGadgetFilterOnClickListener;
 import com.example.skillyouneed.reycles.listeners.SkillListOnClickListener;
 import com.example.skillyouneed.utilities.Constant;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -32,7 +36,7 @@ import java.util.ArrayList;
 
 /*  En esta actividad mostramos todas las skills disponibles junto con un desplegable donde
     se montrarán la rutina para cada una*/
-public class SkillListActivity extends AppCompatActivity {
+public class SkillListActivity extends AppCompatActivity implements SkillListGadgetFilterOnClickListener, SkillListOnClickListener {
 
     //DB
     private Type fatherType = null;
@@ -44,7 +48,11 @@ public class SkillListActivity extends AppCompatActivity {
     private ImageButton imageButtonShowFiltersSkillList;
     private FloatingActionButton floatingActionButtonProfileSkillList;
     //RecyclerView (initRecyclerViewSkill();)
-    SkillListAdapterRecycler skillListAdapterRecycler;
+    private SkillListAdapterRecycler skillListAdapterRecycler;
+    private SkillListGadgetFilterAdapterRecycler SkillListGadgetFilterAdapterRecycler;
+    //imageButtonShowFiltersSkillList
+    private Boolean pushShowButton = false;
+    private Boolean fistPush = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +90,7 @@ public class SkillListActivity extends AppCompatActivity {
 
     private void initRecyclerViewSkill() {
         Query query = index
-                .orderBy("skillName");
+                .whereEqualTo("skillTypeFK", fatherType.getTypeUid());
 
         FirestoreRecyclerOptions<Skill> myRecyclerOptions = new FirestoreRecyclerOptions
                 .Builder<Skill>()
@@ -91,12 +99,103 @@ public class SkillListActivity extends AppCompatActivity {
                 .build();
 
         recyclerViewOptionsSkillList.setLayoutManager(new LinearLayoutManager(this));
-        skillListAdapterRecycler = new SkillListAdapterRecycler(myRecyclerOptions);
+        skillListAdapterRecycler = new SkillListAdapterRecycler(myRecyclerOptions, this);
         skillListAdapterRecycler.notifyDataSetChanged();
         recyclerViewOptionsSkillList.setAdapter(skillListAdapterRecycler);
     }
 
     private void initEvents() {
+        searchViewSearchSkillList.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchFilterRoutineList(query, "skillName");
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchFilterRoutineList(newText, "skillName");
+                return false;
+            }
+        });
+
+        imageButtonShowFiltersSkillList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pushShowButton = !pushShowButton;
+                if (pushShowButton){
+                    recyclerViewGadgetSkillList.setVisibility(View.VISIBLE);
+                    if (!fistPush){
+                        recyclerViewGadgetFilter();
+                        fistPush = true;
+                    }
+
+                }else {
+                    recyclerViewGadgetSkillList.setVisibility(View.GONE);
+                }
+            }
+        });
+
+        floatingActionButtonProfileSkillList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SkillListActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+    }
+
+    private void searchFilterRoutineList(String strSearch, String fieldName){
+
+        Query query = myDB
+                .collection("skill")
+                .orderBy(fieldName)
+                .startAt(strSearch)
+                .endAt(strSearch + "\uf8ff");
+
+        FirestoreRecyclerOptions<Skill> myRecyclerOptions = new FirestoreRecyclerOptions
+                .Builder<Skill>()
+                .setLifecycleOwner(this)
+                .setQuery(query, Skill.class)
+                .build();
+
+        recyclerViewOptionsSkillList.setLayoutManager(new LinearLayoutManager(this));
+        skillListAdapterRecycler = new SkillListAdapterRecycler(myRecyclerOptions, this);
+        skillListAdapterRecycler.notifyDataSetChanged();
+        recyclerViewOptionsSkillList.setAdapter(skillListAdapterRecycler);
+    }
+
+    private void recyclerViewGadgetFilter(){
+
+        Query query = myDB
+                .collection("gadget").orderBy("gadgetName");
+
+        FirestoreRecyclerOptions<Gadget> myRecyclerOptions = new FirestoreRecyclerOptions
+                .Builder<Gadget>()
+                .setLifecycleOwner(this)
+                .setQuery(query, Gadget.class)
+                .build();
+
+        recyclerViewGadgetSkillList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        SkillListGadgetFilterAdapterRecycler = new SkillListGadgetFilterAdapterRecycler(myRecyclerOptions, this);
+        SkillListGadgetFilterAdapterRecycler.notifyDataSetChanged();
+        recyclerViewGadgetSkillList.setAdapter(SkillListGadgetFilterAdapterRecycler);
+    }
+
+    @Override
+    public void OnItemClick(Gadget model, int position) {
+
+    }
+
+    @Override
+    public void onIntemClick(Skill model, int position) {
+        Intent intent = new Intent(SkillListActivity.this, RoutineActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constant.SKILL_LIST, model);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
