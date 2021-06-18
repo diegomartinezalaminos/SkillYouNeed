@@ -2,7 +2,7 @@
 
 -   [Vídeo](https://www.youtube.com/watch?v=bY5pTQ154s8)
 -   [PDF](https://github.com/diegomartinezalaminos/SkillYouNeed/blob/main/pdf/SkillYouNeed.pdf)
--   [APK](https://www.youtube.com/watch?v=bY5pTQ154s8)
+-   [APK](https://github.com/diegomartinezalaminos/SkillYouNeed/tree/main/apk)
 -   [Source Code](https://www.youtube.com/watch?v=bY5pTQ154s8)
 -   [Landing Page](https://www.youtube.com/watch?v=bY5pTQ154s8)
 
