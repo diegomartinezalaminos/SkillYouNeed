@@ -20,6 +20,7 @@ Si el usuario que inicia en la app es admin, tendrá la psibiliada de añadir o 
 - Rutinas personalizadas de adaptación
 - Vidios explicativos sobre la tecnica correcta de la habilidad y ejercicios
 ### Admin
+- El usuario admin es admin@gmail.com password 12345678
 - Todo lo que puede hacer un usuario normal
 - Crear/Borrar/Eliminar habiliadaes y planes de entrenamiento
 - Informacion sobre los usuarios dados de alta
